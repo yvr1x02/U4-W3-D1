@@ -1,0 +1,84 @@
+
+---------------CLIENTI---------------------
+
+INSERT INTO public.clienti (nome, cognome, anno_di_nascita,regione_residenza)
+VALUES ('Yuri','Impellizzeri',2002-09-05,'Sicilia'),( 'Gabriel', 'Azamfiri', 1997-10-05, 'Lombardia'), ( 'Eddy', 'Turpo', 1990-03-01, 'Lazio'),
+( 'Kassandra', 'Falsitta', 2000-11-25, 'Sicilia'),('Arianna', 'Crestani', 1993-07-12, 'Lombardia'),
+('Leonardo', 'Martelli', 1985-04-22, 'Toscana'),
+('Giulia', 'Rossi', 1992-06-18, 'Veneto'),
+('Marco', 'Bianchi', 1988-08-30, 'Lazio'),
+('Elisa', 'Verdi', 1995-01-14, 'Emilia-Romagna'),
+('Tommaso', 'De Luca', 2001-12-02, 'Campania');
+
+
+---------------FATTURE---------------------
+
+
+INSERT INTO public.fatture (tipologia, importo, iva, id_cliente, data_fattura, numero_fornitore)
+VALUES 
+('Vendita', 1500.00, 22, 1, '2024-08-01', 1),
+('Acquisto', 250.75, 22, 2, '2024-08-05', 2),
+('Vendita', 3200.50, 10, 3, '2024-08-07', 3),
+('Acquisto', 1850.00, 22, 4, '2024-08-10', 4),
+('Vendita', 4600.00, 22, 5, '2024-08-12', 5),
+('Servizio', 720.30, 22, 6, '2024-08-15', 6),
+('Acquisto', 980.00, 10, 7, '2024-08-18', 7),
+('Vendita', 540.25, 22, 8, '2024-08-20', 8),
+('Servizio', 1240.00, 22, 9, '2024-08-22', 9),
+('Acquisto', 300.00, 22, 10, '2024-08-25', 10);
+
+
+
+---------------FORNITORI---------------------
+
+INSERT INTO public.fornitori (denominazione, regione_residenza)
+VALUES 
+('Tech Solutions SRL', 'Lombardia'),
+('Food Distributors SPA', 'Emilia-Romagna'),
+('Edilizia Italiana', 'Toscana'),
+('Moda e Design', 'Lazio'),
+('Automotive Services', 'Piemonte'),
+('Energie Verdi', 'Sicilia'),
+('Logistica Express', 'Veneto'),
+('Arredi Moderni', 'Friuli-Venezia Giulia'),
+('Servizi Informatici SRL', 'Campania'),
+('Costruzioni e Co.', 'Puglia');
+
+
+---------------PRODOTTI---------------------
+
+
+INSERT INTO public.prodotti ( descrizione, in_produzione, in_commercio, data_attivazione, data_disattivazione)
+VALUES 
+( 'Smartphone X100', TRUE, TRUE, '2023-01-10', NULL),
+( 'Laptop Pro 15', TRUE, FALSE, '2023-03-15', '2024-07-01'),
+( 'Tablet A7', TRUE, TRUE, '2023-05-20', NULL),
+( 'Smartwatch Z5', TRUE, FALSE, '2023-07-01', '2024-05-15'),
+( 'TV OLED 55"', TRUE, TRUE, '2022-11-25', NULL),
+( 'Cuffie Wireless', TRUE, TRUE, '2023-02-18', NULL),
+( 'Console Gaming Y', TRUE, FALSE, '2023-04-12', '2024-06-10'),
+( 'Frigorifero 300L', TRUE, TRUE, '2022-09-30', NULL),
+( 'Lavatrice Eco 8kg', TRUE, FALSE, '2023-06-22', '2024-08-01'),
+( 'Aspirapolvere XYZ', TRUE, TRUE, '2023-08-05', NULL);
+
+
+--------------- 1 ---------------------
+
+SELECT *
+FROM public.clienti WHERE nome = 'Mario'
+
+
+--------------- 2 ---------------------
+
+SELECT nome, cognome 
+FROM public.clienti WHERE EXTRACT (YEAR FROM anno_di_nascita) = 1982
+
+--------------- 3 ---------------------
+SELECT numero_fattura
+FROM public.fatture WHERE iva = 20
+
+--------------- 4 ---------------------
+SELECT * FROM prodotti WHERE EXTRACT( YEAR FROM data_attivazione)= '2017' AND in_produzione = true
+OR in_commercio = true
+
+--------------- 5 ---------------------
