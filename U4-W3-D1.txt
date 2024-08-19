@@ -82,3 +82,18 @@ SELECT * FROM prodotti WHERE EXTRACT( YEAR FROM data_attivazione)= '2017' AND in
 OR in_commercio = true
 
 --------------- 5 ---------------------
+SELECT *
+FROM fatture 
+INNER JOIN clienti ON id_cliente = numero_cliente
+WHERE importo <1000
+
+--------------- 6 ---------------------
+SELECT  numero_fattura, importo, iva , data_fattura, denominazione
+FROM fatture 
+INNER JOIN fornitori USING(numero_fornitore)
+
+
+--------------- 7 -----------------------
+SELECT COUNT(*) FROM fatture
+WHERE iva='20'
+GROUP BY EXTRACT(YEAR FROM data_fattura)
